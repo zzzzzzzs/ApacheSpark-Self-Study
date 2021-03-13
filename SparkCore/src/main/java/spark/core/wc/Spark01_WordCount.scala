@@ -21,7 +21,7 @@ object Spark01_WordCount {
         // 2.1 从文件中读取数据
         // scala : Source.fromFile()
         // textFile : Spark框架可以将文件中的内容一行一行的读取过来。
-        val lines: RDD[String] = sc.textFile("datas/1.txt")
+        val lines: RDD[String] = sc.textFile("SparkCore/datas/1.txt")
 
         // 2.2 将每一行的字符串进行分词操作：扁平化 形成一个一个的单词
         val words: RDD[String] = lines.flatMap(line=>line.split(" "))
