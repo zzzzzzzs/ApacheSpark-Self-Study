@@ -18,7 +18,7 @@ object Spark01_RDD {
         val sc = new SparkContext(sparkConf)
 
         // TODO Spark环境对象从集合中创建RDD
-        val list = List(1,2,3,4)
+        val list = List(1, 2, 3, 4)
 
         // 使用parallelize方法将集合转换为RDD，进行操作
         // parallelize : 并行处理集合中的数据

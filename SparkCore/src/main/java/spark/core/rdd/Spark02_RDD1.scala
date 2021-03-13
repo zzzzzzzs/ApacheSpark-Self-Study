@@ -17,7 +17,11 @@ object Spark02_RDD1 {
         // Spark环境通过textFile来读取文件，读取的方式一行一行来读取的。
         // 路径可以使用星号进行通配操作 : input/word*.txt
         // path路径可以是具体的文件，也可以是目录
-        val file: RDD[String] = sc.textFile("input")
+        val file: RDD[String] = sc.textFile("SparkCore/datas")
+        // path还可以是分布式存储系统路径：HDFS
+        //        val file: RDD[String] = sc.textFile("hdfs://hadoop102:8020/test.txt")
+        // wholeTextFiles: 以文件为单位读取数据，会带有文件路径
+        //sc.wholeTextFiles("SparkCore/datas")
 
         file.collect().foreach(println)
 

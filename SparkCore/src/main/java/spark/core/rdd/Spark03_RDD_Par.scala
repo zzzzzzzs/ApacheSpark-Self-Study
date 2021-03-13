@@ -8,6 +8,8 @@ object Spark03_RDD_Par {
     def main(args: Array[String]): Unit = {
 
 
+
+        // local[2] 个分区
         val sparkConf = new SparkConf().setMaster("local[2]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
         // TODO Spark -  RDD的分区和并行度
@@ -17,7 +19,7 @@ object Spark03_RDD_Par {
         // 分区的数量和并行度其实没有直接的关系。主要取决于CPU核的数量
 
         // RDD的分区数量是可以在创建时更改的。如果不更改，那么使用默认的分区
-        val list = List(1,2,3,4)
+        val list = List(1,2,3,4,5)
         // makeRDD方法的第二个参数就是默认分区的数量
         // scheduler.conf.getInt("spark.default.parallelism", totalCores)
         // scheduler.conf = SparkConf
@@ -27,7 +29,7 @@ object Spark03_RDD_Par {
         val number: RDD[Int] = sc.makeRDD(list)
         // 将RDD保存成分区文件
         // 8个 => 默认有8个分区 => 环境中总核数
-        number.saveAsTextFile("output")
+        number.saveAsTextFile("./SparkCore/output")
 
 
         sc.stop

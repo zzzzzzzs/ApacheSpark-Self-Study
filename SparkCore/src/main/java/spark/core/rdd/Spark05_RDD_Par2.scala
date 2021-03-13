@@ -16,9 +16,9 @@ object Spark05_RDD_Par2 {
         // 读取文件时默认分区数量为 ： math.min(defaultParallelism, 2) => 2
         // textFile的第二个参数表示最小分区的数量(不见得相等)
         // defaultParallelism = scheduler.conf.getInt("spark.default.parallelism", totalCores)
-        val file: RDD[String] = sc.textFile("input/aaa.txt")
+        val file: RDD[String] = sc.textFile("SparkCore/datas/1.txt")
 
-        file.saveAsTextFile("output")
+        file.saveAsTextFile("SparkCore/output")
 
         sc.stop
     }
