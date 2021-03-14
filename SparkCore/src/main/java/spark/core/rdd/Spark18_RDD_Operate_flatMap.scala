@@ -2,7 +2,7 @@ package spark.core.rdd
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark18_RDD_Operate_Transform5 {
+object Spark18_RDD_Operate_flatMap {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

@@ -3,7 +3,7 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark20_RDD_Operate_Transform6 {
+object Spark20_RDD_Operate_Glom {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
