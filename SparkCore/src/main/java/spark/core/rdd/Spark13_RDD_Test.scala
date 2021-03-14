@@ -10,7 +10,7 @@ object Spark13_RDD_Test {
         val sc = new SparkContext(sparkConf)
 
         // TODO 小练习：从服务器日志数据apache.log中获取用户请求URL资源路径
-        val rdd: RDD[String] = sc.textFile("input/apache.log",2)
+        val rdd: RDD[String] = sc.textFile("SparkCore/datas/apache.log",2)
 
         val newRDD = rdd.map(
             line => {
@@ -19,9 +19,9 @@ object Spark13_RDD_Test {
                 (datas(3), datas(6))
             }
         )
-        newRDD//.filter(_._1.startsWith("17/05/2015"))
-                        .saveAsTextFile("output")
-        //newRDD.collect().foreach(println)
+//        newRDD//.filter(_._1.startsWith("17/05/2015"))
+//                        .saveAsTextFile("SparkCore/output")
+        newRDD.collect().foreach(println)
 
         sc.stop
     }

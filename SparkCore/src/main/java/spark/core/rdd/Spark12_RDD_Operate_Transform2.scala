@@ -20,6 +20,7 @@ object Spark12_RDD_Operate_Transform2 {
         // TODO mapPartitions数据处理性能要比map高
         //      mapPartitions数据处理的规则是：必须保证这个分区的所有数据处理完成
         //      数据才会释放，如果没有全部执行完，那么不会释放数据，可能会出现内存溢出的问题。
+        //  map 适合用在内存小的情况下
         val newRDD1 = rdd.map(
             num => {
                 println("************************")
