@@ -2,7 +2,7 @@ package spark.core.rdd
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark22_RDD_Operate_Transform8 {
+object Spark22_RDD_Operate_groupBy {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

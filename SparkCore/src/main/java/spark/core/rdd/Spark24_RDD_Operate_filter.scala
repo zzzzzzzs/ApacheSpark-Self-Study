@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark24_RDD_Operate_Transform9 {
+object Spark24_RDD_Operate_filter {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

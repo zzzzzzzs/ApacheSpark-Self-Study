@@ -26,7 +26,7 @@ object Spark23_RDD_Test {
 
         // TODO 小练习：从服务器日志数据apache.log中获取每个时间段访问量。
         //      (HH, count)
-        val rdd = sc.textFile("input/apache.log")
+        val rdd = sc.textFile("SparkCore/datas/apache.log")
 
         val rdd1 = rdd.map(
             line => {
