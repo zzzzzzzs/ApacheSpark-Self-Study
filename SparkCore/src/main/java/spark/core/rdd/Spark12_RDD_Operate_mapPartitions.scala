@@ -3,7 +3,7 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark12_RDD_Operate_Transform2 {
+object Spark12_RDD_Operate_mapPartitions {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

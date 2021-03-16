@@ -1,4 +1,5 @@
-package com.atguigu.bigdata.spark.core.rdd
+package spark.core.rdd
+
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -18,7 +19,7 @@ object Spark05_RDD_Par2 {
         // defaultParallelism = scheduler.conf.getInt("spark.default.parallelism", totalCores)
         val file: RDD[String] = sc.textFile("SparkCore/datas/1.txt")
 
-        file.saveAsTextFile("SparkCore/output")
+        file.saveAsTextFile("./SparkCore/output")
 
         sc.stop
     }

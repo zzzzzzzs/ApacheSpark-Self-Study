@@ -3,7 +3,7 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark29_RDD_Operate_Transform13 {
+object Spark29_RDD_Operate_coalesce {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

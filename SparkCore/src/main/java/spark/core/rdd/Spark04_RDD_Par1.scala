@@ -1,4 +1,5 @@
-package com.atguigu.bigdata.spark.core.rdd
+package spark.core.rdd
+
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -15,7 +16,7 @@ object Spark04_RDD_Par1 {
 
         // 如果想要改变分区，可以使用第二个参数来代替默认值
         val number: RDD[Int] = sc.makeRDD(list, 3)
-        number.saveAsTextFile("ouput")
+        number.saveAsTextFile("./SparkCore/ouput")
 
         sc.stop
     }

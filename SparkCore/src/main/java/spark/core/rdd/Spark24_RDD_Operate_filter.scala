@@ -18,7 +18,7 @@ object Spark24_RDD_Operate_filter {
 //        rdd.filter(num=>num%2==0).collect().foreach(println)
 
         // TODO 小练习：从服务器日志数据apache.log中获取2015年5月17日的请求路径
-        val rdd = sc.textFile("input/apache.log")
+        val rdd = sc.textFile("SparkCore/datas/apache.log")
 
         rdd.filter(
             line => {

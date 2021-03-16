@@ -3,7 +3,7 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark15_RDD_Operate_Transform4 {
+object Spark15_RDD_Operate_mapPartitionsWithIndex {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
@@ -18,6 +18,7 @@ object Spark15_RDD_Operate_Transform4 {
         var rdd = sc.makeRDD(list,2)
         // mapPartitionsWithIndex : (Int, iterator) => iterator
         var newRDD = rdd.mapPartitionsWithIndex(
+            // 这里的index参数是分区的编号
             (index, iter) => {
                 iter.map(
                     num => (index, num)
