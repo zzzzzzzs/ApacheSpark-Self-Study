@@ -11,7 +11,7 @@ object Spark05_Req2_HotCategoryTop10SessionAnalysis {
         val sparConf = new SparkConf().setMaster("local[*]").setAppName("HotCategoryTop10Analysis")
         val sc = new SparkContext(sparConf)
 
-        val actionRDD = sc.textFile("datas/user_visit_action.txt")
+        val actionRDD = sc.textFile("SparkCore/datas/user_visit_action.txt")
         actionRDD.cache()
         val top10Ids: Array[String] = top10Category(actionRDD)
 
