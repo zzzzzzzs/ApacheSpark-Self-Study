@@ -1,7 +1,7 @@
 package spark.core.framework.controller
 
-import com.atguigu.bigdata.spark.core.framework.common.TController
-import com.atguigu.bigdata.spark.core.framework.service.WordCountService
+import spark.core.framework.common.TController
+import spark.core.framework.service.WordCountService
 
 
 /**

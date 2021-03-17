@@ -1,7 +1,7 @@
 package spark.core.framework.application
 
-import com.atguigu.bigdata.spark.core.framework.common.TApplication
-import com.atguigu.bigdata.spark.core.framework.controller.WordCountController
+import spark.core.framework.common.TApplication
+import spark.core.framework.controller.WordCountController
 
 object WordCountApplication extends App with TApplication{
 

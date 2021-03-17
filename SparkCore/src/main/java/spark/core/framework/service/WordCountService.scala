@@ -1,7 +1,7 @@
 package spark.core.framework.service
 
-import com.atguigu.bigdata.spark.core.framework.common.TService
-import com.atguigu.bigdata.spark.core.framework.dao.WordCountDao
+import spark.core.framework.common.TService
+import spark.core.framework.dao.WordCountDao
 import org.apache.spark.rdd.RDD
 
 /**
@@ -14,7 +14,7 @@ class WordCountService extends TService {
     // 数据分析
     def dataAnalysis() = {
 
-        val lines = wordCountDao.readFile("datas/word.txt")
+        val lines = wordCountDao.readFile("SparkCore/datas/1.txt")
         val words: RDD[String] = lines.flatMap(_.split(" "))
         val wordToOne = words.map(word=>(word,1))
         val wordToSum: RDD[(String, Int)] = wordToOne.reduceByKey(_+_)

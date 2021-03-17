@@ -1,6 +1,6 @@
 package spark.core.framework.common
 
-import com.atguigu.bigdata.spark.core.framework.util.EnvUtil
+import spark.core.framework.util.EnvUtil
 
 trait TDao {
 
