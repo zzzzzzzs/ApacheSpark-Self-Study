@@ -9,7 +9,7 @@ object Spark36_RDD_Operate_reduceByKey {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - (KV)类型
+        // TODO Spark - 转换算子 - (KV)类型 reduceByKey
         val list = List(
             ("nba", "xxxxxx"),
             ("cba", "xxxxxx"),

@@ -3,7 +3,7 @@ package spark.core.req
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark01_Req1_HotCategoryTop10Analysis {
+object Spark02_Req1_HotCategoryTop10Analysis1 {
 
     def main(args: Array[String]): Unit = {
 
@@ -11,8 +11,13 @@ object Spark01_Req1_HotCategoryTop10Analysis {
         val sparConf = new SparkConf().setMaster("local[*]").setAppName("HotCategoryTop10Analysis")
         val sc = new SparkContext(sparConf)
 
+        // Q : actionRDD重复使用 可以放到缓存中
+        // Q : cogroup 源码中数据源不相同可能会出现shuffle  ShuffleDependency
+
         // 1. 读取原始日志数据
         val actionRDD = sc.textFile("datas/user_visit_action.txt")
+        // 将重复使用的RDD放到缓存
+        actionRDD.cache()
 
         // 2. 统计品类的点击数量：（品类ID，点击数量）
         val clickActionRDD = actionRDD.filter(
@@ -67,36 +72,42 @@ object Spark01_Req1_HotCategoryTop10Analysis {
             }
         ).reduceByKey(_+_)
 
+        // (品类ID, 点击数量) => (品类ID, (点击数量, 0, 0))
+        // (品类ID, 下单数量) => (品类ID, (0, 下单数量, 0))
+        //                    => (品类ID, (点击数量, 下单数量, 0))
+        // (品类ID, 支付数量) => (品类ID, (0, 0, 支付数量))
+        //                    => (品类ID, (点击数量, 下单数量, 支付数量))
+        // ( 品类ID, ( 点击数量, 下单数量, 支付数量 ) )
+
         // 5. 将品类进行排序，并且取前10名
         //    点击数量排序，下单数量排序，支付数量排序
         //    元组排序：先比较第一个，再比较第二个，再比较第三个，依此类推
         //    ( 品类ID, ( 点击数量, 下单数量, 支付数量 ) )
         //
-        //  cogroup = connect + group
-        val cogroupRDD: RDD[(String, (Iterable[Int], Iterable[Int], Iterable[Int]))] =
-            clickCountRDD.cogroup(orderCountRDD, payCountRDD)
-        val analysisRDD = cogroupRDD.mapValues{
-            case ( clickIter, orderIter, payIter ) => {
-
-                var clickCnt = 0
-                val iter1 = clickIter.iterator
-                if ( iter1.hasNext ) {
-                    clickCnt = iter1.next()
-                }
-                var orderCnt = 0
-                val iter2 = orderIter.iterator
-                if ( iter2.hasNext ) {
-                    orderCnt = iter2.next()
-                }
-                var payCnt = 0
-                val iter3 = payIter.iterator
-                if ( iter3.hasNext ) {
-                    payCnt = iter3.next()
-                }
-
-                ( clickCnt, orderCnt, payCnt )
+        val rdd1 = clickCountRDD.map{
+            case ( cid, cnt ) => {
+                (cid, (cnt, 0, 0))
             }
         }
+        val rdd2 = orderCountRDD.map{
+            case ( cid, cnt ) => {
+                (cid, (0, cnt, 0))
+            }
+        }
+        val rdd3 = payCountRDD.map{
+            case ( cid, cnt ) => {
+                (cid, (0, 0, cnt))
+            }
+        }
+
+        // 将三个数据源合并在一起，统一进行聚合计算
+        val soruceRDD: RDD[(String, (Int, Int, Int))] = rdd1.union(rdd2).union(rdd3)
+
+        val analysisRDD = soruceRDD.reduceByKey(
+            ( t1, t2 ) => {
+                ( t1._1+t2._1, t1._2 + t2._2, t1._3 + t2._3 )
+            }
+        )
 
         val resultRDD = analysisRDD.sortBy(_._2, false).take(10)
 
