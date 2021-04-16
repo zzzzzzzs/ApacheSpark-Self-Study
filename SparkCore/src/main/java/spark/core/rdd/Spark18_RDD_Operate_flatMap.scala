@@ -1,5 +1,6 @@
 package spark.core.rdd
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 object Spark18_RDD_Operate_flatMap {
@@ -16,14 +17,14 @@ object Spark18_RDD_Operate_flatMap {
 
         val list2 = List("hello world")
 
-        val rdd = sc.makeRDD(list2)
+        val rdd = sc.makeRDD(list1)
         //rdd.flatMap(list=>list).collect().foreach(println)
         //rdd.flatMap(_).collect().foreach(println) (X)
 //        rdd.flatMap(
 //            num => List(num)
 //        ).collect().foreach(println)
 
-        rdd.flatMap(s=>s).collect.foreach(println)
+        val value: RDD[Int] = rdd.flatMap(e => List(e + 2))
 
 
         sc.stop

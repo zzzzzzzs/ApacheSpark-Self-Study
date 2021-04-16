@@ -2,13 +2,12 @@ package spark.streaming
 
 import java.text.SimpleDateFormat
 
-import com.atguigu.bigdata.spark.streaming.SparkStreaming11_Req1_BlackList.AdClickData
-import com.atguigu.bigdata.spark.util.JDBCUtil
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord}
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+import spark.streaming.util.JDBCUtil
 
 object SparkStreaming12_Req2 {
 
