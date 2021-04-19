@@ -20,19 +20,18 @@ object Spark01_SparkSQL_Basic {
         //val df: DataFrame = spark.read.json("datas/user.json")
         //df.show()
 
-        // DataFrame => SQL
+        // TODO DataFrame => SQL
 //        df.createOrReplaceTempView("user")
 //
 //        spark.sql("select * from user").show
 //        spark.sql("select age, username from user").show
 //        spark.sql("select avg(age) from user").show
 
-        // DataFrame => DSL
-        // 在使用DataFrame时，如果涉及到转换操作，需要引入转换规则
-
+        // TODO DataFrame => DSL
+        // 在使用DataFrame时，如果涉及到转换操作，需要引入转换规则 import spark.implicits._（这里的spark是上下文的对象）
         //df.select("age", "username").show
         //df.select($"age" + 1).show
-        //df.select('age + 1).show
+        //df.select('age + 1).show // 可以使用'age代替$"age"
 
         // TODO DataSet
         // DataFrame其实是特定泛型的DataSet
@@ -40,7 +39,7 @@ object Spark01_SparkSQL_Basic {
         //val ds: Dataset[Int] = seq.toDS()
         //ds.show()
 
-        // RDD <=> DataFrame
+        // TODO RDD <=> DataFrame
         val rdd = spark.sparkContext.makeRDD(List((1, "zhangsan", 30), (2, "lisi", 40)))
         val df: DataFrame = rdd.toDF("id", "name", "age")
         val rowRDD: RDD[Row] = df.rdd

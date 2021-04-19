@@ -16,6 +16,7 @@ object Spark02_SparkSQL_UDF {
         val df = spark.read.json("SparkCore/datas/user.json")
         df.createOrReplaceTempView("user")
 
+        // 用户自定义函数
         spark.udf.register("prefixName", (name:String) => {
             "Name: " + name
         })
