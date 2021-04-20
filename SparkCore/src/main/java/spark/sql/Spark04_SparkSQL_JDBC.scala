@@ -16,21 +16,22 @@ object Spark04_SparkSQL_JDBC {
         // 读取MySQL数据
         val df = spark.read
                 .format("jdbc")
-                .option("url", "jdbc:mysql://linux1:3306/spark-sql")
+                .option("url", "jdbc:mysql://aliyun102:3306/spark-sql")
                 .option("driver", "com.mysql.jdbc.Driver")
                 .option("user", "root")
-                .option("password", "123123")
+                .option("password", "000000")
                 .option("dbtable", "user")
                 .load()
-        //df.show
+//        df.show
 
         // 保存数据
+        // 创建了一个新表
         df.write
                 .format("jdbc")
-                .option("url", "jdbc:mysql://linux1:3306/spark-sql")
+                .option("url", "jdbc:mysql://aliyun102:3306/spark-sql")
                 .option("driver", "com.mysql.jdbc.Driver")
                 .option("user", "root")
-                .option("password", "123123")
+                .option("password", "000000")
                 .option("dbtable", "user1")
                 .mode(SaveMode.Append)
                 .save()

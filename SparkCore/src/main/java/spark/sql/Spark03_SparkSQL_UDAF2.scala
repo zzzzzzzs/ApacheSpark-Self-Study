@@ -12,7 +12,7 @@ object Spark03_SparkSQL_UDAF2 {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("sparkSQL")
         val spark = SparkSession.builder().config(sparkConf).getOrCreate()
         import spark.implicits._
-        val df = spark.read.json("datas/user.json")
+        val df = spark.read.json("SparkCore/datas/user.json")
 
         // 早期版本中，spark不能在sql中使用强类型UDAF操作
         // SQL & DSL

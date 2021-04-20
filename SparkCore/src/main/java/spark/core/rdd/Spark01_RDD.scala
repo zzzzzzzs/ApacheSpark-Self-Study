@@ -12,7 +12,7 @@ object Spark01_RDD {
         // 1. 创建方式：
         //    1.1 内存中创建 : List(1,2,3,4)
         //    1.2 存储中创建 : File
-        //    1.3 从RDD创建
+        //    1.3 从RDD创建，给下一个RDD使用
         //    1.4 直接new
 
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
@@ -31,7 +31,6 @@ object Spark01_RDD {
         // makeRDD的底层代码就是调用parallelize方法，所以逻辑上没有区别
         val numRDD: RDD[Int] = sc.makeRDD(list)
         numRDD.collect().foreach(println)
-
 
         sc.stop
     }
