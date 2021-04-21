@@ -12,7 +12,7 @@ object Spark04_RDD_Par1 {
         val sparkConf = new SparkConf().setMaster("local[2]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO 从内存中将数据保存成数据文件
+        // TODO 从内存中将数据保存成文件
         val list = List(1,2,3,4,5)
 
         // 如果想要改变分区，可以使用第二个参数来代替默认值
