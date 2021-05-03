@@ -15,7 +15,7 @@ buildNumber.properties
 
 **/.mvn
 **/target/
-
+**/output/
 # 同级的.idea
 .idea
 

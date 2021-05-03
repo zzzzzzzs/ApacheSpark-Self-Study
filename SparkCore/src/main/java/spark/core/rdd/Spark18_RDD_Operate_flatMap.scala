@@ -26,6 +26,7 @@ object Spark18_RDD_Operate_flatMap {
 
         val value: RDD[Int] = rdd.flatMap(e => List(e + 2))
 
+        value.collect().foreach(println)
 
         sc.stop
     }

@@ -9,7 +9,7 @@ object Spark20_RDD_Operate_Glom {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Glom
+        // TODO Glom:将同一个分区的数据直接转换为相同类型的内存数组进行处理，分区不变
         //      小练习：取每个分区的最大值后求和
         // (1,2),(3,4),(5,6,7)
         // 2,4,7

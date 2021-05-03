@@ -9,7 +9,6 @@ object Spark11_RDD_Operate_map {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-
         // 运行的结果是并行的关系
         val list = List(1,2,3,4)
         val rdd: RDD[Int] = sc.makeRDD(list,2)
@@ -25,6 +24,7 @@ object Spark11_RDD_Operate_map {
                 num
             }
         )
+        // newRDD1用到了newRDD的数据，先执行第一个map，然后再执行第二个map
         newRDD1.collect()
 
         sc.stop

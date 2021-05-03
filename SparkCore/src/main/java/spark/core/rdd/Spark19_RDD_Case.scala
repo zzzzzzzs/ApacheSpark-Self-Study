@@ -2,7 +2,7 @@ package spark.core.rdd
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark19_RDD_Test {
+object Spark19_RDD_Case {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")

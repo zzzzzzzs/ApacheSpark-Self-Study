@@ -22,6 +22,7 @@ object Spark12_RDD_Operate_mapPartitions {
         //      数据才会释放，如果没有全部执行完，那么不会释放数据，可能会出现内存溢出的问题。
         //  map 适合用在内存小的情况下
         val newRDD1 = rdd.map(
+            // 每条数据都会执行一次
             num => {
                 println("************************")
                 num * 2
@@ -29,14 +30,18 @@ object Spark12_RDD_Operate_mapPartitions {
         )
 
         val newRDD = rdd.mapPartitions(
+            // 2个分区，执行2次，执行的次数少，效率高。
             iter => {
                 println("######################")
                 iter.map(_*2)
             }
         )
 
-        newRDD.collect()//.foreach(println)
-        newRDD1.collect()//.foreach(println)
+        newRDD.collect()
+          .foreach(println)
+
+        newRDD1.collect()
+          .foreach(println)
 
         sc.stop
     }
