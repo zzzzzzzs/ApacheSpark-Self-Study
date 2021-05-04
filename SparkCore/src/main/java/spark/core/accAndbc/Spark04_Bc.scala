@@ -1,9 +1,12 @@
-package spark.core.acc
+package spark.core.accAndbc
 
-import org.apache.spark.broadcast.Broadcast
+import org.apache.spark.rdd.RDD
+import org.apache.spark.util.AccumulatorV2
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark05_Bc1 {
+import scala.collection.mutable
+
+object Spark04_Bc {
 
     def main(args: Array[String]): Unit = {
 
@@ -20,14 +23,18 @@ object Spark05_Bc1 {
             ("a", 4), ("b", 5), ("c", 6)
         )
 
-        // 声明广播变量
-        val bc: Broadcast[Map[String, Int]] = sc.broadcast(map)
+        // (a, (1,4)), (b, (2, 5)), (c, (3,6))
+        //val joinRDD: RDD[(String, (Int, Int))] = rdd1.join(rdd2)
 
+        // join 会产生笛卡尔乘积，数据量可能会非常的大
+        // 数据有可能被打乱重新组合，中间可能会有shuffle
+        //println(joinRDD.collect.mkString(","))
 
+        // ("a", 1), ("b", 2), ("c", 3)
+        // (a, (1,4)), (b, (2, 5)), (c, (3,6))
         rdd1.map{
             case ( k, v ) => {
-                // 使用广播变量
-                var v1 = bc.value.getOrElse(k, 0)
+                var v1 = map.getOrElse(k, 0)
                 (k, (v, v1))
             }
         }.collect.foreach(println)

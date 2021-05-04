@@ -3,13 +3,13 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark41_RDD_Operate_Transform25 {
+object Spark41_RDD_Operate_combineByKey {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - (KV)类型
+        // TODO Spark - 转换算子 - (KV)类型 combineByKey
         // 将数据List(("a", 88), ("b", 95), ("a", 91), ("b", 93), ("a", 95), ("b", 98))
         // 求每个key的平均值
         val list = List(

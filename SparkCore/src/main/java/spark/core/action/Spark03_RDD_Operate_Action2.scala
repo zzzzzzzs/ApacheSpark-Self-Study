@@ -19,6 +19,7 @@ object Spark03_RDD_Operate_Action2 {
         // RDD的一个方法，有可能会触发作业的执行的同时还返回新的RDD。
         val list = List(1,2,3,4)
         val rdd = sc.makeRDD(list)
+        // TODO　不会执行，没有行动算子
         rdd.map((_,1)).sortByKey()
 
         sc.stop()

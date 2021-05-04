@@ -3,13 +3,14 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark40_RDD_Operate_Transform24 {
+object Spark40_RDD_Operate_foldByKey {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - (KV)类型
+        // TODO Spark - 转换算子 - (KV)类型 foldByKey
+        //  当分区内计算规则和分区间计算规则相同时，aggregateByKey就可以简化为foldByKey
         // 取出每个分区内相同key的最大值然后分区间相加
         val list = List(
             ("a",1),("a",2),("c",3),

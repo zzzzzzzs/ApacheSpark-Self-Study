@@ -29,15 +29,12 @@ object Spark34_RDD_Operate_partitionBy {
         //     Spark默认采用Hash分区器
         // partitionBy存在shuffle操作
 
-        // Range分区器一般在排序时使用。平时使用多个不多。
+        // Range分区器一般在排序时使用。平时使用的不多。
         val rdd2 = rdd1.partitionBy( new HashPartitioner(2) )
 
 
         rdd1.saveAsTextFile("output1")
         rdd2.saveAsTextFile("output2")
-
-
-
 
         sc.stop
     }

@@ -9,7 +9,7 @@ object Spark39_RDD_Operate_aggregateByKey {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - (KV)类型
+        // TODO Spark - 转换算子 - (KV)类型 aggregateByKey
         // 取出每个分区内相同key的最大值然后分区间相加
         val list = List(
             ("a",1),("a",2),("c",3),

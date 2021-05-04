@@ -3,7 +3,7 @@ package spark.core.rdd
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark46_RDD_Operate_Req {
+object Spark46_RDD_Operate_provinceTop3 {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
@@ -14,7 +14,7 @@ object Spark46_RDD_Operate_Req {
         // TODO 统计出每一个省份每个广告被点击数量排行的Top3
 
         // 1. 读取日志数据，获取原始数据
-        val logRDD = sc.textFile("input/agent.log")
+        val logRDD = sc.textFile("SparkCore/datas/agent.log")
 
         // 2. 将数据进行结构的转换，方便统计
         //  （xxx  河北省 石家庄 zs   a） => (河北省 a) => (( 河北省，a ), 1)

@@ -9,7 +9,9 @@ object Spark37_RDD_Operate_groupByKey {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - (KV)类型
+        /*TODO Spark - 转换算子 - (KV)类型 groupByKey：根据数据的K值进行分组，Key相同，对应Value就放置在一个组中
+            有shuffle 效率没有reduceBy高（有预聚合），
+         */
         val list = List(
             ("nba", "xxxxxx"),
             ("cba", "xxxxxx"),
@@ -23,7 +25,6 @@ object Spark37_RDD_Operate_groupByKey {
         //           将数据作为整体放置在一个组中
         //val groupByRDD: RDD[(String, Iterable[(String, String)])] = rdd.groupBy(_._1)
         //rdd.groupBy()
-        // groupByKey : 根据数据的K值进行分组，Key相同，对应Value就放置在一个组中
         val newRDD: RDD[(String, Iterable[String])] = rdd.groupByKey()
         newRDD.collect().foreach(println)
 

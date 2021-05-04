@@ -22,8 +22,7 @@ object Spark28_RDD_Operate_coalesce {
 
         //rdd.saveAsTextFile("output1")
        // newRDD.saveAsTextFile("output2")
-        newRDD1.saveAsTextFile("output3")
-
+        newRDD1.saveAsTextFile("./SparkCore/output")
         // 1. 合并分区时，会不会将数据打乱重新组合，是否存在shuffle操作？
         //    不会进行数据shuffle操作，就是简单的分区合并
         //    如果合并后，可能会产生数据倾斜的问题，为了避免这个问题，可以采用shuffle

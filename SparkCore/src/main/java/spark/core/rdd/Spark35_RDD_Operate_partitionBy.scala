@@ -19,10 +19,10 @@ object Spark35_RDD_Operate_partitionBy {
 
         val rdd = sc.makeRDD(list,2)
         // TODO 改变数据的分区
-        // partitionBy如果在分区器前后一致的情况下，不会进行分区操作，也就不会shuffle
+        // partitionBy如果在分区器前后一致的情况下，不会进行分区操作，也就不会shuffle。所以一般都会有shuffle。
         val newRDD: RDD[(String, String)] = rdd.partitionBy( new MyPartitioner() )
 
-        newRDD.saveAsTextFile("output")
+        newRDD.saveAsTextFile("./SparkCore/output")
 
         sc.stop
     }

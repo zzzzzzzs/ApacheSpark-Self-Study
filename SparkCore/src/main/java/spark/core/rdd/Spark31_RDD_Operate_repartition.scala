@@ -9,7 +9,7 @@ object Spark31_RDD_Operate_repartition {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - repartition (缩减,合并分区)
+        // TODO Spark - 转换算子 - repartition (主要用来扩大分区)
         // 将多个分区减少分区，提高效率
         val list = List(1,2,3,4,5,6,7,8,9,10)
 

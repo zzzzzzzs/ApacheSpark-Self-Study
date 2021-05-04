@@ -10,8 +10,7 @@ object Spark24_RDD_Operate_filter {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Filter
-        // 根据指定的规则对数据进行筛选过滤，如果条件满足，数据保留，如果条件不满足，数据丢弃
+        // TODO Filter :根据指定的规则对数据进行筛选过滤，如果条件满足，数据保留，如果条件不满足，数据丢弃
 //        val list = List(1,2,3,4)
 //        val rdd = sc.makeRDD(list)
 //
@@ -26,7 +25,6 @@ object Spark24_RDD_Operate_filter {
                 val dateString = datas(3)
                 // 17/05/2015:10:05:03
                 dateString.startsWith("17/05/2015")
-
             }
         ).collect.foreach(println)
 

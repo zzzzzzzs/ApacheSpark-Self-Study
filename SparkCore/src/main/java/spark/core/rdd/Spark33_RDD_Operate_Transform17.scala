@@ -8,7 +8,7 @@ object Spark33_RDD_Operate_Transform17 {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
         val sc = new SparkContext(sparkConf)
 
-        // TODO Spark - 转换算子 - 双Value
+        // TODO Spark - 转换算子 - 双Value union intersection subtract zip
         // 所谓的双value其实就是两个RDD的操作
 
         // 交集，并集，差集
@@ -42,9 +42,6 @@ object Spark33_RDD_Operate_Transform17 {
         //    可以进行拉链操作，返回的结果类型，K为第一个RDD的数据类型，V为第二个RDD的数据类型
         //println(rdd1.zip(rdd2).collect().mkString(","))
         println(rdd1.zip(rdd3).collect().mkString(","))
-
-
-
 
         sc.stop
     }

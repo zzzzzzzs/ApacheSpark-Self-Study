@@ -15,13 +15,17 @@ object Spark01_RDD_Operate_Action {
         // collect算子就是行动算子
         // TODO 行动算子调用一次，作业就会执行一次
         // 所有的行动算子的核心功能其实就是runJob
-        val list = List(1,2,3,4)
+        val list = List(1, 2, 3, 4)
         val rdd = sc.makeRDD(list)
         // 转换算子会产生新的RDD
-        val value: RDD[Int] = rdd.map(_*2)
+        val value: RDD[Int] = rdd.map(_ * 2)
         rdd.collect().foreach(println)
         println("********************")
-        rdd.collect().foreach(println)
+        //        rdd.collect().foreach(println)
+        // TODO Spark - 行动算子 - reduce
+        // 结果做聚合
+        val i: Int = rdd.reduce(_ + _)
+        println(i)
         sc.stop()
 
     }

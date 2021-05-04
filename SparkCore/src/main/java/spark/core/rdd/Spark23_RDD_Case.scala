@@ -6,7 +6,7 @@ import java.util.Date
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Spark23_RDD_Test {
+object Spark23_RDD_Case {
 
     def main(args: Array[String]): Unit = {
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDD")
