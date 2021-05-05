@@ -14,12 +14,15 @@ import scala.collection.mutable.ListBuffer
 object SparkStreaming13_Req31 {
 
     def main(args: Array[String]): Unit = {
-
+        /*
+        TODO 最近一小时广告点击量
+            先启动MockData，然后启动此程序，然后打开 datas/adClickCharts.html（用火狐浏览器打开）
+        * */
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
         val ssc = new StreamingContext(sparkConf, Seconds(5))
 
         val kafkaPara: Map[String, Object] = Map[String, Object](
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "linux1:9092,linux2:9092,linux3:9092",
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "bigdata102:9092,bigdata103:9092,bigdata104:9092",
             ConsumerConfig.GROUP_ID_CONFIG -> "atguigu",
             "key.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
             "value.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer"
@@ -74,8 +77,8 @@ object SparkStreaming13_Req31 {
                     }
                 }
 
-                // 输出文件
-                val out = new PrintWriter(new FileWriter(new File("D:\\mineworkspace\\idea\\classes\\atguigu-classes\\datas\\adclick\\adclick.json")))
+                // 输出文件，把文件输出到adclick.json里面
+                val out = new PrintWriter(new FileWriter(new File("D:\\Data\\KnowledgeWarehouse\\code\\ApacheSpark-Self-Study\\SparkCore\\datas\\adclick\\adclick.json")))
                 out.println("["+list.mkString(",")+"]")
                 out.flush()
                 out.close()

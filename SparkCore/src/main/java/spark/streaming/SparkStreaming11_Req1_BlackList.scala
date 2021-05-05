@@ -16,11 +16,17 @@ object SparkStreaming11_Req1_BlackList {
 
     def main(args: Array[String]): Unit = {
 
+        /*
+        TODO 广告黑名单
+            实现实时的动态黑名单机制：将每天对某个广告点击超过 100 次的用户拉黑。注：黑名单保存到MySQL中。
+            先启动 此程序，然后再启动 MockData 生产数据 然后看Mysql中的数据
+        * */
+
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
         val ssc = new StreamingContext(sparkConf, Seconds(3))
 
         val kafkaPara: Map[String, Object] = Map[String, Object](
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "linux1:9092,linux2:9092,linux3:9092",
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "bigdata103:9092,bigdata103:9092,bigdata103:9092",
             ConsumerConfig.GROUP_ID_CONFIG -> "atguigu",
             "key.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
             "value.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer"

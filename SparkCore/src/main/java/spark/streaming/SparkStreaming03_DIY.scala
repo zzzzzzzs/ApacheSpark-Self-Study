@@ -43,6 +43,7 @@ object SparkStreaming03_DIY {
             }).start()
         }
 
+        // 系统自己调用
         override def onStop(): Unit = {
             flg = false;
         }

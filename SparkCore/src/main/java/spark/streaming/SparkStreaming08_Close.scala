@@ -13,7 +13,7 @@ object SparkStreaming08_Close {
            val thread = new Thread()
            thread.start()
 
-           thread.stop(); // 强制关闭
+           thread.stop(); // 强制关闭，数据有安全问题
 
          */
 
@@ -34,7 +34,7 @@ object SparkStreaming08_Close {
                 override def run(): Unit = {
                     // 优雅地关闭
                     // 计算节点不在接收新的数据，而是将现有的数据处理完毕，然后关闭
-                    // 通过第三方判断状态
+                    // TODO 通过第三方判断状态
                     // Mysql : Table(stopSpark) => Row => data
                     // Redis : Data（K-V）
                     // ZK    : /stopSpark
@@ -58,13 +58,13 @@ object SparkStreaming08_Close {
                     if ( state == StreamingContextState.ACTIVE ) {
                         ssc.stop(true, true)
                     }
+                    // 线程停止
                     System.exit(0)
                 }
             }
         ).start()
 
         ssc.awaitTermination() // block 阻塞main线程
-
 
     }
 

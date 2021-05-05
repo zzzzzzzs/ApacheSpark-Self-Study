@@ -21,7 +21,7 @@ object SparkStreaming07_Output1 {
                 (x:Int, y:Int) => {x - y},
                 Seconds(9), Seconds(3))
 
-        // foreachRDD不会出现时间戳
+        // TODO foreachRDD不会出现时间戳，只有print会出现
         windowDS.foreachRDD(
             rdd => {
 

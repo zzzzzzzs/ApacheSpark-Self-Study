@@ -13,6 +13,10 @@ object SparkStreaming13_Req3 {
 
     def main(args: Array[String]): Unit = {
 
+        /*
+        TODO 最近一小时广告点击量
+            先启动MockData，然后启动此程序
+        * */
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
         val ssc = new StreamingContext(sparkConf, Seconds(5))
 
@@ -36,7 +40,7 @@ object SparkStreaming13_Req3 {
             }
         )
 
-        // 最近一分钟，每10秒计算一次
+        // TODO 最近一分钟，每10秒计算一次
         // 12:01 => 12:00
         // 12:11 => 12:10
         // 12:19 => 12:10

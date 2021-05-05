@@ -13,7 +13,7 @@ object SparkStreaming06_State_Transform {
 
         val lines = ssc.socketTextStream("localhost", 9999)
 
-        // transform方法可以将底层RDD获取到后进行操作
+        // TODO　transform方法可以将底层RDD获取到后进行操作，使用的位置非常重要
         // 1. DStream功能不完善
         // 2. 需要代码周期性的执行
 

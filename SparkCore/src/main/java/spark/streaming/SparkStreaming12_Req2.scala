@@ -13,11 +13,15 @@ object SparkStreaming12_Req2 {
 
     def main(args: Array[String]): Unit = {
 
+        /*TODO 描述：实时统计每天各地区各城市各广告的点击总流量，并将其存入MySQL。
+            启动 MockData ，然后启动本程序，此时就可以看到 Mysql表中的 area_city_ad_count 数据不断增加
+         */
+
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
         val ssc = new StreamingContext(sparkConf, Seconds(3))
 
         val kafkaPara: Map[String, Object] = Map[String, Object](
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "linux1:9092,linux2:9092,linux3:9092",
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "bigdata102:9092,bigdata103:9092,bigdata104:9092",
             ConsumerConfig.GROUP_ID_CONFIG -> "atguigu",
             "key.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
             "value.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer"

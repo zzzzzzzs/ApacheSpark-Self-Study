@@ -20,7 +20,7 @@ object SparkStreaming07_Output {
                 (x:Int, y:Int) => { x + y},
                 (x:Int, y:Int) => {x - y},
                 Seconds(9), Seconds(3))
-        // SparkStreaming如何没有输出操作，那么会提示错误
+        // TODO SparkStreaming如何没有输出操作，那么会提示错误
         //windowDS.print()
 
         ssc.start()

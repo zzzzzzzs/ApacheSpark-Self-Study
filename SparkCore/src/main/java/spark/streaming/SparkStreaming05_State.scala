@@ -12,11 +12,12 @@ object SparkStreaming05_State {
 
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
         val ssc = new StreamingContext(sparkConf, Seconds(3))
-        ssc.checkpoint("SparkCore/cp")
+
 
         // 无状态数据操作，只对当前的采集周期内的数据进行处理
         // 在某些场合下，需要保留数据统计结果（状态），实现数据的汇总
         // 使用有状态操作时，需要设定检查点路径
+        ssc.checkpoint("SparkCore/cp")
         val datas = ssc.socketTextStream("localhost", 9999)
 
         val wordToOne = datas.map((_,1))

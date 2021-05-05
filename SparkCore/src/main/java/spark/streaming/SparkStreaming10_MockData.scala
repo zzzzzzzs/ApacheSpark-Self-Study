@@ -19,7 +19,7 @@ object SparkStreaming10_MockData {
         // Application => Kafka => SparkStreaming => Analysis
         val prop = new Properties()
         // 添加配置
-        prop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "linux1:9092")
+        prop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "bigdata102:9092")
         prop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")
         prop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")
         val producer = new KafkaProducer[String, String](prop)

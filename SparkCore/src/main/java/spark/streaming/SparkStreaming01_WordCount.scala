@@ -12,11 +12,11 @@ object SparkStreaming01_WordCount {
         // StreamingContext创建时，需要传递两个参数
         // 第一个参数表示环境配置
         val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SparkStreaming")
-        // 第二个参数表示批量处理的周期（采集周期）
+        // 第二个参数表示批量处理的周期（采集周期，一般是）
         val ssc = new StreamingContext(sparkConf, Seconds(3))
 
         // TODO 逻辑处理
-        // 获取端口数据
+        // 获取端口数据 nc -lp 9999
         val lines: ReceiverInputDStream[String] = ssc.socketTextStream("localhost", 9999)
 
         val words = lines.flatMap(_.split(" "))
