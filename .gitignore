@@ -18,8 +18,9 @@ buildNumber.properties
 **/output/
 **/cp/
 # 同级的.idea
-.idea
+**/*.iml
 
-**/.gitignore
+# 同级的.idea
+**/.idea
 
 
